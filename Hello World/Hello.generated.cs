@@ -1,6 +1,4 @@
-﻿// <2>
-// <2>
-namespace Hello
+﻿namespace Hello
 {
    public class Program
    {

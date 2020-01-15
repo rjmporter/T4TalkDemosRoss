@@ -1,7 +1,5 @@
 ﻿<#@ template debug="false" hostspecific="false" language="C#" #>
-// <2>
-<#@ output extension=".txt" #>
-// <2>
+<#@ output extension=".generated.cs" #>
 <# //<3 /> #>
 <# // <4> #>
 namespace Hello
