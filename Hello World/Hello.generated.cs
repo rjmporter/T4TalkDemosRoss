@@ -1,4 +1,4 @@
-﻿namespace Hello
+﻿ namespace Hello
 {
    public class Program
    {
