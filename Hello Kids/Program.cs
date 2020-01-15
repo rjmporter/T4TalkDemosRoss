@@ -54,7 +54,7 @@ namespace Hello_Kids
             case StoredNames.Benjamin:
                return "Benjamin Joseph!";
             default:
-               return name.ToString() + " !";
+               return name.ToString() + "!";
          }
       }
    }
