@@ -19,4 +19,11 @@ namespace Hello
 		//8
     }
 }
-// 2
+<#+ // a "T4 class feature control block"
+    public string[] GetNamesFromJsonFile( string filePath )
+    {
+	    string[] theResult = null;
+		//5
+		return theResult;
+	}
+ #>
