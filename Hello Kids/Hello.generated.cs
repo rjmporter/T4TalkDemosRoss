@@ -11,6 +11,14 @@ namespace Hello
             I am going to need to "fill in" the values from the json file here.
             I will have to use a T4 Expression Control block
         */
-		//8
+		//10
+		Devin,
+Grace,
+Nathan,
+Colin,
+Rose,
+Ethan,
+William,
+Benjamin
     }
 }
