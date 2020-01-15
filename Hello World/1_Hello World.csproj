@@ -46,17 +46,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Hello.generated.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Hello.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Hello.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Hello.txt</LastGenOutput>
-    </Content>
-    <Content Include="Hello.txt">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Hello.tt</DependentUpon>
+      <LastGenOutput>Hello.generated.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <ItemGroup>
