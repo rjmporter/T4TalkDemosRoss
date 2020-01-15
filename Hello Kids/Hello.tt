@@ -28,7 +28,10 @@ namespace Hello
    PushIndent( indent );
  #>
 <#=      enumMembers #>
-<# //11 #>
+<#   
+   PopIndent(); 
+   PopIndent(); 
+ #>
     }
 }
 <#+ // a "T4 class feature control block"
