@@ -7,6 +7,15 @@ namespace Hello_Kids
    class Program
    {
       static SpeechSynthesizer synth = new SpeechSynthesizer();
+      static string speachSynthSySLFormat = @"<?xml version='1.0'?>
+<speak version='1.0'
+       xmlns='http://www.w3.org/2001/10/synthesis'
+       xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+       xsi:schemaLocation='http://www.w3.org/2001/10/synthesis
+                 http://www.w3.org/TR/speech-synthesis10/synthesis.xsd'
+       xml:lang='en-US'>
+
+  <s><emphasis level='strong' >{0}</emphasis><emphasis level='strong' >{1}</emphasis> What have you done?</s></speak>";
       public static void Main()
       {
          synth.SetOutputToDefaultAudioDevice();
@@ -32,7 +41,7 @@ namespace Hello_Kids
                Console.WriteLine();
                string troubleCall = GetTroubleCall( selected );
                Console.WriteLine( troubleCall );
-               synth.Speak( troubleCall );
+               synth.SpeakSsml( string.Format( speachSynthSySLFormat, troubleCall.Split(' ')[0], troubleCall.Split( ' ' )[1] ) );
                Console.WriteLine();
             }
          }
