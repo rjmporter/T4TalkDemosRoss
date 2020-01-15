@@ -2,3 +2,18 @@
 <#@ assembly name="System.Core" #>
 <#@ assembly name="$(SolutionDir)packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll" #>
 <#@ import namespace="Newtonsoft.Json.Linq" #>
+<#+
+   private JObject ParseJObject( string filePath )
+   {
+      string[] theResult;
+      string json = File.ReadAllText( filePath );
+      return JObject.Parse( json );
+   }
+
+   public string CommaDelimitedListOfJArrayValues( string filePath, string arrayName  )
+   {
+      var jArray = ( (JArray) ParseJObject( filePath )[ arrayName ] );
+      var array = jArray.Select(j => j.Value<string>()).ToArray();
+      return String.Join($",{Environment.NewLine}", array);
+   }
+ #>
