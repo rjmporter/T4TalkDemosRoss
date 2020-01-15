@@ -6,7 +6,7 @@
 <#@ import namespace="System.Linq" #>
 <#@ output extension="generated.cs" #>
 <# 
-   //9
+	string indent = "    ";
 	string jsonFilePath = Host.ResolvePath( "..\\kids.json" );
    string[] names = GetNamesFromJsonFile( jsonFilePath );
    string enumMembers = String.Join( $",{Environment.NewLine}", names );
