@@ -1,6 +1,8 @@
 ﻿<#@ template debug="false" hostspecific="false" language="C#" #>
 <#@ output extension=".generated.cs" #>
-<# //<3 /> #>
+ <#
+   string name = "Glug.NET";
+ #>
 <# // <4> #>
 namespace Hello
 {
