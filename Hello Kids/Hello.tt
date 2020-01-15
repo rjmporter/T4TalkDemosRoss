@@ -25,8 +25,10 @@ namespace Hello
 <#+ // a "T4 class feature control block"
     public string[] GetNamesFromJsonFile( string filePath )
     {
-	    string[] theResult = null;
-		//5
-		return theResult;
+      string[] theResult;
+      string json = File.ReadAllText( filePath );
+      JObject jData = JObject.Parse( json );
+      theResult = ((JArray) jData["names"]).Select(j => j.Value<string>()).ToArray();
+      return theResult;
 	}
  #>
