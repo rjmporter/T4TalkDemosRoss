@@ -3,16 +3,14 @@
  <#
    string name = "Glug.NET";
  #>
-<# // <4> #>
 namespace Hello
 {
    public class Program
    {
       private static void Main()
       {
-         System.Console.WriteLine("Hello, World!");
-         System.Console.ReadLine();
+          System.Console.WriteLine("Hello, <#= name #>!");
+          System.Console.ReadLine();
       }
    }
 }
-<# // </4> #>
