@@ -1,12 +1,15 @@
 ﻿using System;
 using Hello;
+using System.Speech.Synthesis;
 
 namespace Hello_Kids
 {
    class Program
    {
+      static SpeechSynthesizer synth = new SpeechSynthesizer();
       public static void Main()
       {
+         synth.SetOutputToDefaultAudioDevice();
          StoredNames selected = StoredNames.Devin;
          int i = 0;
          bool continueRun = true;
@@ -27,10 +30,13 @@ namespace Hello_Kids
                selected--;
                i = 0;
                Console.WriteLine();
-               Console.WriteLine( GetTroubleCall( selected ) );
+               string troubleCall = GetTroubleCall( selected );
+               Console.WriteLine( troubleCall );
+               synth.Speak( troubleCall );
                Console.WriteLine();
             }
          }
+         synth.Dispose();
       }
 
       private static string GetTroubleCall( StoredNames name )
