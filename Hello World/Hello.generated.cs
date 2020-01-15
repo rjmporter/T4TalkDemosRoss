@@ -4,8 +4,8 @@
    {
       private static void Main()
       {
-         System.Console.WriteLine("Hello, World!");
-         System.Console.ReadLine();
+          System.Console.WriteLine("Hello, Glug.NET!");
+          System.Console.ReadLine();
       }
    }
 }
