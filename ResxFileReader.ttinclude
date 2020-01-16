@@ -1,0 +1,91 @@
+<#@ assembly name="System.Core" #>
+<#@ assembly name="System.Xml" #>
+<#@ assembly name="System.Xml.Linq" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Xml.Linq" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Text.RegularExpressions" #>
+<#@ import namespace="System.Collections.Generic" #><#+
+   public class ResourceDictionary : Dictionary<string,Dictionary<string, string>>
+   {
+      public void Add( string resourceKey, string language, string translatedValue )
+      {
+         if(!ContainsKey(resourceKey))
+         {
+            Add(resourceKey, new Dictionary<string, string>());
+         }
+         var entry = this[resourceKey];
+         if(entry == null)
+         {
+            entry = new Dictionary<string,string>();
+         }
+         entry.Add(language, translatedValue);
+      }
+   }
+
+   public string WriteFilesUsedComment( string solutionFolder, string resxFolder )
+   {
+      var solutionUri = new Uri( solutionFolder );
+      var files = GetResxFileList( resxFolder, string.Empty )
+                  .Select(s => $"//     $(SolutionDir){solutionUri.MakeRelativeUri(new Uri(s)).OriginalString}" )
+                  .ToArray();
+
+      return string.Join( Environment.NewLine, files);
+   }
+
+   public ResourceDictionary GetResourceKeys( string resxFolder )
+   {
+      ResourceDictionary returnValue = new ResourceDictionary();
+      var files = GetResxFileList( resxFolder, string.Empty );
+
+      foreach( var file in files)
+      {
+         var language = DetermineCultureStringFromFileName( file );
+         var items = XElement
+                     .Load( file )
+                     .Descendants( "data" )
+                     .Where( el => ((string)el.Attribute( "name" )).StartsWith("IDS_") );
+         
+         foreach( XElement item in items )
+         {  
+            if(item != null)
+            {
+               string resourceKey = (string)item.Attribute("name");
+               string resourceValue = CleanUpResourceValue( string.IsNullOrEmpty( item.Value ) ? string.Empty : item.Value );
+               returnValue.Add(resourceKey, language, resourceValue);
+            }
+         }
+      }
+      return returnValue;
+   }
+
+   private string CleanUpResourceValue( string resourceValue )
+   {
+      string val;
+      val = Regex.Replace(resourceValue, "^\\s+|\\s*$", string.Empty);
+      val = Regex.Replace(val, "(?<!\\\\)\"", "\\\"");
+
+      return val;
+   }
+
+   private string DetermineCultureStringFromFileName( string fileName )
+   {
+      var file = Path.GetFileName( fileName );
+      var culture = file.Split('.')[1];      
+      if( culture == "resx")
+      {
+         culture = "en-US";
+      }
+      return culture;
+   }
+
+   private string[] GetResxFileList( string resxFolder, string searchPattern )
+   {
+      if( string.IsNullOrWhiteSpace( searchPattern ) )
+      {
+         searchPattern = "*.resx";
+      }
+      if( !Directory.Exists( resxFolder ) ) return null;
+      return Directory.GetFiles( resxFolder, searchPattern, SearchOption.AllDirectories);
+   } #>

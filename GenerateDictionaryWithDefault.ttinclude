@@ -1,0 +1,70 @@
+<#@ assembly name="System.Core" #>
+<#@ assembly name="System.Xml" #>
+<#@ assembly name="System.Xml.Linq" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Xml.Linq" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Text.RegularExpressions" #>
+<#@ import namespace="System.Collections.Generic" #><#+
+   string privateFieldFormat = "private static readonly {1} {0} = new {2}";
+   string entriesFormat = "[\"{0}\"] = @\"{1}\",";
+   string propertiesFormat = "{0} = {1}";
+   string publicPropertyFormat = "public static {2} {0} => {1};";
+
+   public void WriteDictionaryInitializer( string dictionaryType, string dictionaryTypeInitilizer, string propertyName, IDictionary<string, string> valuesToInitWith, IDictionary<string, string> additionalPropertiesToInit, string indent )
+   {
+      propertyName = CleanUpPropertyName(propertyName);
+      string privateVariableName = CreatePrivateVariableName(propertyName);
+      WriteLine( string.Format(privateFieldFormat, privateVariableName, dictionaryType, dictionaryTypeInitilizer) );
+      WriteLine( "{" );
+      PushIndent( indent );
+      WriteEntries( valuesToInitWith );
+      WritePropertyInitializers( additionalPropertiesToInit );
+      PopIndent();
+      WriteLine("};");
+      WriteLine("");
+      WritePublicProperty(propertyName, privateVariableName, dictionaryType);
+      WriteLine("");
+   }
+   private void WriteEntries(IDictionary<string, string> valuesToInitWith)
+   {
+      foreach(var entry in valuesToInitWith)
+      {
+         WriteLine( string.Format( entriesFormat, entry.Key, CleanUpStringValue( entry.Value ) ) );
+      }
+   }
+   private void WritePropertyInitializers(IDictionary<string, string> propertiesToInit)
+   {
+      int i = 0;
+      foreach(var entry in propertiesToInit)
+      {
+         string line = string.Format( propertiesFormat, entry.Key, entry.Value );
+         if( i++ < propertiesToInit.Count-1 )
+         {
+            line += ",";
+         }
+         WriteLine( line );
+      }
+   }
+   private void WritePublicProperty( string publicPropertyName, string privateFieldName, string dictionaryType )
+   {
+      WriteLine(string.Format(publicPropertyFormat, publicPropertyName, privateFieldName, dictionaryType ));
+   }
+   private string CreatePrivateVariableName(string publicPropertyName)
+   {
+      return "_" + publicPropertyName;
+   }
+   private string CleanUpStringValue( string stringValue )
+   {
+      string val;
+      val = Regex.Replace (Regex.Replace(stringValue, "^\\s+|\\s*$", string.Empty), "\\\"", "\"\"");
+
+      return val;
+   }
+   private string CleanUpPropertyName( string propertyName )
+   {
+      string val = Regex.Replace( propertyName, "\\s", "_");
+      return val;
+   }
+ #>

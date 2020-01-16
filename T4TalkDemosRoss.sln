@@ -5,23 +5,37 @@ VisualStudioVersion = 16.0.29418.71
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "1_Hello World", "Hello World\1_Hello World.csproj", "{18B9190B-9D48-4CB6-B4AF-5946B1C0A654}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DemoSnippets", "DemoSnippets", "{998E30BB-668D-4D39-85C6-C9B9F35650DF}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1_2_DemoSnippets", "1_2_DemoSnippets", "{998E30BB-668D-4D39-85C6-C9B9F35650DF}"
 	ProjectSection(SolutionItems) = preProject
 		Hello World\HelloWorld.demosnippets = Hello World\HelloWorld.demosnippets
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "2_Hello Kids", "Hello Kids\2_Hello Kids.csproj", "{D70961CC-6B89-437F-ADD9-D6FAC1FB7912}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TemplateLibrary", "TemplateLibrary", "{7A91DA3B-8CD8-4742-9FDE-6C0E505A8331}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1_thru_4_TemplateLibrary", "1_thru_4_TemplateLibrary", "{7A91DA3B-8CD8-4742-9FDE-6C0E505A8331}"
 	ProjectSection(SolutionItems) = preProject
+		GenerateDictionaryWithDefault.ttinclude = GenerateDictionaryWithDefault.ttinclude
+		4_GenerateResourceDictionaryFromResx\GenerateResources.tt = 4_GenerateResourceDictionaryFromResx\GenerateResources.tt
 		ReadJsonFile.ttinclude = ReadJsonFile.ttinclude
+		ResxFileReader.ttinclude = ResxFileReader.ttinclude
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "3_Hello Kids With Include", "Hello Kids With Include\3_Hello Kids With Include.csproj", "{4F3F4AEB-98D8-44CD-955B-65DE40B05DB9}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{14A8A0DE-8F5C-40B4-A8AD-63D0ACD667CC}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1_2_Solution Items", "1_2_Solution Items", "{14A8A0DE-8F5C-40B4-A8AD-63D0ACD667CC}"
 	ProjectSection(SolutionItems) = preProject
 		Kids.json = Kids.json
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "4_GenerateResourceDictionaryFromResx", "4_GenerateResourceDictionaryFromResx\4_GenerateResourceDictionaryFromResx.csproj", "{9CC7D060-DCE7-40FC-8D56-806626DB9A51}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3_4_TranslatedResourceFiles", "3_4_TranslatedResourceFiles", "{B1074ACF-DB1B-466A-ADE1-4E64BA35C50C}"
+	ProjectSection(SolutionItems) = preProject
+		Resources.de-DE.resx = Resources.de-DE.resx
+		Resources.fr-FR.resx = Resources.fr-FR.resx
+		Resources.ja-JP.resx = Resources.ja-JP.resx
+		Resources.resx = Resources.resx
+		Resources.zh-CN.resx = Resources.zh-CN.resx
 	EndProjectSection
 EndProject
 Global
@@ -42,6 +56,10 @@ Global
 		{4F3F4AEB-98D8-44CD-955B-65DE40B05DB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4F3F4AEB-98D8-44CD-955B-65DE40B05DB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4F3F4AEB-98D8-44CD-955B-65DE40B05DB9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9CC7D060-DCE7-40FC-8D56-806626DB9A51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9CC7D060-DCE7-40FC-8D56-806626DB9A51}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9CC7D060-DCE7-40FC-8D56-806626DB9A51}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9CC7D060-DCE7-40FC-8D56-806626DB9A51}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
